@@ -1,5 +1,5 @@
 output "ssh_access" {
-  value = "ssh redhat@${azurerm_public_ip.public_ip.ip_address}"
+  value = "ssh -i ~/.ssh/hashicorp hashicorp@${azurerm_public_ip.public_ip.ip_address}"
   description = "SSH Access"
 }
 
