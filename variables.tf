@@ -10,16 +10,15 @@ variable "location" {
   default = "West Europe"
 }
 
-variable "admin_password" {
-  type = string
-  description = "Admin Password"
-  default = "T3mP0r4L!1213"
-}
-
 variable "sku" {
   type = string
   description = "Azure instance sku"
   default = "9-lvm-gen2"
+}
+
+variable "ssh_key" {
+  type = string
+  description = "SSH key"
 }
 
 variable "instance_type" {

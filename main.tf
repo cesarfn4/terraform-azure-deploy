@@ -1,3 +1,10 @@
+resource "azurerm_ssh_public_key" "ssh_key" {
+  name                = "${var.instance_name}-key"
+  resource_group_name = var.resource_group
+  location            = var.location
+  public_key          = var.ssh_key
+}
+
 resource "azurerm_virtual_network" "vnet" {
   name                = "${var.instance_name}-net"
   address_space       = ["10.0.0.0/16"]
@@ -56,11 +63,14 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location            = var.location
   size                = var.instance_type
   admin_username      = "redhat"
-  admin_password      = var.admin_password
-  disable_password_authentication = "false"
   network_interface_ids = [
     azurerm_network_interface.network_interface.id,
   ]
+
+  admin_ssh_key {
+    username   = "redhat"
+    public_key = azurerm_ssh_public_key.ssh_key.public_key
+  }
 
   os_disk {
     caching              = "ReadWrite"
