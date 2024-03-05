@@ -1,5 +1,5 @@
 output "ssh_access" {
-  value = "ssh redhat@${aws_instance.vm.public_ip}"
+  value = "ssh redhat@${azurerm_public_ip.public_ip.ip_address}"
   description = "SSH Access"
 }
 
