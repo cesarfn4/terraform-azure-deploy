@@ -62,13 +62,13 @@ resource "azurerm_linux_virtual_machine" "vm" {
   resource_group_name = var.resource_group
   location            = var.location
   size                = var.instance_type
-  admin_username      = "redhat"
+  admin_username      = "hashicorp"
   network_interface_ids = [
     azurerm_network_interface.network_interface.id,
   ]
 
   admin_ssh_key {
-    username   = "redhat"
+    username   = "hashicorp"
     public_key = azurerm_ssh_public_key.ssh_key.public_key
   }
 
